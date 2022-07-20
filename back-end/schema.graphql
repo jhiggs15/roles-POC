@@ -1,3 +1,20 @@
 type Person {
-    name: String
+    name: String,
+    roles: [Role!]! @relationship(type:"HAS_ROLE", direction: OUT)
+}
+
+type Role {
+    name: String, 
+    usersWithRole: [Person!]! @relationship(type:"HAS_ROLE", direction: IN),
+    allPermissions: [Permission!]! @cypher(statement: """
+        MATCH (this:Role)-[*]->(p:Permission)
+        RETURN p
+    """),
+    rolePermissions: [Permission!]! @relationship(type:"USES",  direction: OUT)
+    inheritedRoles: [Role!]! @relationship(type:"INHERITS",  direction: OUT)
+}
+
+type Permission {
+    name: String,
+    usedBy: [Role!]! @relationship(type:"USES",  direction: IN)
 }
