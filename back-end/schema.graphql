@@ -12,7 +12,7 @@ type Role {
     name: String, 
     usersWithRole: [Person!]! @relationship(type:"HAS_ROLE", direction: IN),
     allPermissions: [Permission!]! @cypher(statement: """
-        MATCH (this)-[*]->(p:Permission)
+        MATCH (this:Role)-[*]->(p:Permission)
         RETURN p
     """),
     rolePermissions: [Permission!]! @relationship(type:"USES",  direction: OUT)
