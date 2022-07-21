@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-
-const test = `
-people {
+export const getUsers = gql`
+query People {
+  people {
   name
   permissions {
     name
@@ -21,9 +21,4 @@ people {
   }
 }
 }
-`
-
-export const getUsers = gql`
-query People {
-  ${test}
 `

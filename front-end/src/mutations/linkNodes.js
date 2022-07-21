@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 
-export const createArgs = (personName, role1, role2, permission) => {
+export const createLinkArgs = (personName, role1, role2, permission) => {
     return (
         {
             variables: {

@@ -1,16 +1,15 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
-import { createPermission, createPermissionArgs } from "./mutations/createPerm";
+import { createPermission, createPermissionArgs } from "./mutations/createPermissions";
 import { createRole, createRoleArgs } from "./mutations/createRole";
 import { createUser, createUserArgs } from "./mutations/createUser";
 import { deleteUser, deleteUserArgs } from "./mutations/deleteUser";
-import { deleteRole, deleteRoleArgs } from "./mutations/deleteUser copy";
-import { deletePermission, deletePermissionArgs } from "./mutations/deleteUser copy 2";
-import { createArgs, createLink } from "./mutations/link";
+import { deleteRole, deleteRoleArgs } from "./mutations/deleteRole";
+import { deletePermission, deletePermissionArgs } from "./mutations/deletePermission";
+import { createArgs, createLink, createLinkArgs } from "./mutations/linkNodes";
 
 export const CreateRoles = () => {
 
-    const padddingBetween = 20
     const [createUserMutation,] = useMutation(createUser);
     const [deleteUserMutation,] = useMutation(deleteUser);
     const [deleteRoleMutation,] = useMutation(deleteRole);
@@ -75,7 +74,7 @@ export const CreateRoles = () => {
             </div>
 
         </div>
-        <button style={{marginTop: 30}} onClick={async() => await createLinkMutation(createArgs(name, roleName, roleName2, permName))}> Link </button>
+        <button style={{marginTop: 30}} onClick={async() => await createLinkMutation(createLinkArgs(name, roleName, roleName2, permName))}> Link </button>
 
 
         </div>
